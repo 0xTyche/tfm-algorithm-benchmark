@@ -33,6 +33,23 @@
 
 function sigma = getGaussianPSFsigma(NA, M, pixelSize, lambda, varargin)
 
+% Ensure vectorialPSF is reachable (it ships in ./mex but that folder is not
+% always on the MATLAB path depending on how this package is added).
+% Best-effort and idempotent.
+persistent mexPathInitialized
+if isempty(mexPathInitialized)
+    try
+        thisDir = fileparts(mfilename('fullpath'));
+        mexDir = fullfile(thisDir, 'mex');
+        if exist(mexDir, 'dir') == 7
+            addpath(mexDir);
+        end
+    catch
+        % Ignore: we will handle missing/invalid vectorialPSF below.
+    end
+    mexPathInitialized = true;
+end
+
 if isnumeric(lambda)
     lambda = num2cell(lambda);
 end
@@ -76,7 +93,23 @@ nl = numel(lambda);
 sigma = zeros(1,nl);
 for i = 1:nl
     p.lambda = lambda{i};
-    psf = vectorialPSF([0 0 0], 0, (2*ru)-1, p);
+    try
+        psf = vectorialPSF([0 0 0], 0, (2*ru)-1, p);
+    catch ME
+        % Fallback when vectorialPSF is not on the path or the MEX-file is
+        % unavailable/invalid for this MATLAB/platform.
+        %
+        % Approximation in pixels (object-space pixel size is pixelSize/M):
+        % sigma ~= 0.21 * lambda / (NA * (pixelSize/M))
+        approxSigma = 0.21 * (p.lambda) / (p.NA * (p.pixelSize / p.M));
+        sigma(i) = approxSigma;
+        if ip.Results.Display
+            warning('getGaussianPSFsigma:vectorialPSFUnavailable', ...
+                ['vectorialPSF unavailable (%s). Using approximation sigma=0.21*lambda/(NA*pixelSizeObj).'], ...
+                ME.message);
+        end
+        continue
+    end
     if strcmpi(ip.Results.Mode, 'confocal')
         % approximation: in theory this should be psf_ex.*psf_em
         psf = psf.^2;

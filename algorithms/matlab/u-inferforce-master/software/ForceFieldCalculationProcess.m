@@ -261,6 +261,9 @@ classdef ForceFieldCalculationProcess < DataProcessingProcess
             funParams.LcurveFactor=10;
             funParams.thickness=34000;
             funParams.useLcurve=true;
+            % If set to 9 (or other perfect square), the grid is subdivided into
+            % sqrt(divideConquer)^2 blocks to reduce peak memory usage.
+            funParams.divideConquer = 1;
             funParams.lastToFirst=false;
             funParams.lcornerOptimal='optimal';
         end

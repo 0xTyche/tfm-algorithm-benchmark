@@ -62,7 +62,16 @@ p.usePaxImg = false;
 p.saveBEMparams = true;
 % p.lastToFirst = false;
 p.LcurveFactor = 10;
-p.divideConquer = 1; % If this is 9, grid is divided by 9 sub-grids where force field will be calculated to reduce memory usage. It's under refined construction.
+% If this is 9 (or other perfect square), grid is divided into sub-grids to
+% reduce peak memory usage.
+if isfield(p,'divideConquer') && ~isempty(p.divideConquer)
+    % Use the process parameter (preferred).
+elseif ~isempty(paramsIn) && isfield(paramsIn,'divideConquer') && ~isempty(paramsIn.divideConquer)
+    % Backwards-compatible override for older saved settings.
+    p.divideConquer = paramsIn.divideConquer;
+else
+    p.divideConquer = 1;
+end
 %% --------------- Initialization ---------------%%
 if feature('ShowFigureWindows'),
     wtBar = waitbar(0,'Initializing...','Name',forceFieldProc.getName());

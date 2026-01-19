@@ -134,7 +134,7 @@ useGrid=displParams.useGrid;
 
 % Perform vector field outlier detection
 if feature('ShowFigureWindows'), waitbar(0,wtBar,sprintf(logMsg)); end
-if feature('ShowFigureWindows'),parfor_progress(nFrames); end
+if feature('ShowFigureWindows') && exist('parfor_progress','file')==2, parfor_progress(nFrames); end
 
 outlierThreshold = p.outlierThreshold;
 parfor j= 1:nFrames
@@ -184,9 +184,9 @@ parfor j= 1:nFrames
 %         tj=toc;
 %         waitbar(j/nFrames,wtBar,sprintf([logMsg timeMsg(tj*(nFrames-j)/j)]));
 %     end
-    if feature('ShowFigureWindows'), parfor_progress; end
+    if feature('ShowFigureWindows') && exist('parfor_progress','file')==2, parfor_progress; end
 end
-if feature('ShowFigureWindows'), parfor_progress(0); end
+if feature('ShowFigureWindows') && exist('parfor_progress','file')==2, parfor_progress(0); end
 
 if p.fillVectors
     % Now this is the real cool step, to run trackStackFlow with known

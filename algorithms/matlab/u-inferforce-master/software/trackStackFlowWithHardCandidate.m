@@ -112,7 +112,7 @@ meanNeiVecs = cellfun(@(x) mean(x,1),closeNeiVecs,'Unif',false);
 stdNeiVecs = cellfun(@(x) std(x,1),closeNeiVecs,'Unif',false);
 anglesBetweenVecs = cell(numel(closeNeiVecs),1);
 disp('Calculating angles between neighboring vectors...')
-if feature('ShowFigureWindows'), parfor_progress(numel(closeNeiVecs)); end
+if feature('ShowFigureWindows') && exist('parfor_progress','file')==2, parfor_progress(numel(closeNeiVecs)); end
 parfor k=1:numel(closeNeiVecs) %for angles between vectors
     curNei = closeNeiVecs{k};
     numCurNei = size(curNei,1);
@@ -124,9 +124,9 @@ parfor k=1:numel(closeNeiVecs) %for angles between vectors
             anglesBetweenVecs{k}=[anglesBetweenVecs{k} curAngle];
         end
     end
-    if feature('ShowFigureWindows'), parfor_progress; end
+    if feature('ShowFigureWindows') && exist('parfor_progress','file')==2, parfor_progress; end
 end
-if feature('ShowFigureWindows'), parfor_progress(0); end
+if feature('ShowFigureWindows') && exist('parfor_progress','file')==2, parfor_progress(0); end
 stdAngleAll = cellfun(@std,anglesBetweenVecs);
 % usePIVSuite = ip.Results.usePIVSuite;
 % contWind = true;
@@ -449,9 +449,9 @@ parfor k = 1:nPoints
     sigtValues(k,:) = sigtVal;
     
 %     fprintf(1,[backSpc '\b\b\b\b']);
-    if feature('ShowFigureWindows'), parfor_progress; end
+    if feature('ShowFigureWindows') && exist('parfor_progress','file')==2, parfor_progress; end
 end
-if feature('ShowFigureWindows'), parfor_progress(0); end
+if feature('ShowFigureWindows') && exist('parfor_progress','file')==2, parfor_progress(0); end
 
 nanInd = find(isnan(v(:,1)));
 endTime = cputime;

@@ -7,7 +7,7 @@ This repository is designed to maintain and compare different Traction Force Mic
 Standardized synthetic datasets with known ground truth are included to enable fair and quantitative comparison of various TFM methods.
 
 
-## content
+## Project Structure
 
 ```text
 tfm-algorithm-benchmark/
@@ -31,7 +31,8 @@ tfm-algorithm-benchmark/
 │   │   │   └── summary.md
 │   │   │
 │   │   ├── Easy-to-use_TFM_package/
-│   │   │   ├── README.md
+|   |   |   ├── documentation/
+    |   |   |   └── User_Manual_Easy-To-Use_TFM_software.pdf
 │   │   │   ├── paper.md
 │   │   │   ├── language.md
 │   │   │   ├── github.md

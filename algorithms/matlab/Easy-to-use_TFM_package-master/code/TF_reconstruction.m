@@ -14,8 +14,11 @@
 function TF_reconstruction
      where_am_I = mfilename('fullpath');
      [my_directory,name] = fileparts(where_am_I);
-     if isempty(strfind(path,my_directory))
-         path(path, my_directory);
-     end
+     % Ensure THIS toolbox takes precedence on the MATLAB path.
+     % (reg_fourier_TFM exists in other TFM toolboxes; appending this folder
+     % can lead to calling the wrong function signature.)
+     addpath(my_directory,'-begin');
+     rehash;
+     clear('reg_fourier_TFM'); % clear cached resolution after path change
     get_data;
 end

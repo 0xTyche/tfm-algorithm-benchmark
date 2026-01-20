@@ -1,0 +1,16 @@
+{
+  "schema": "tfm-benchmark.levelb.v1",
+  "name": "u-inferforce-master-datasets",
+  "type": "beads",
+  "frames": [
+    {
+      "ref": "Ref_Image/T00001C02Z001.tif",
+      "targ": "Targ_Image/XY point 3_wps图片_2.tif"
+    }
+  ],
+  "meta": {
+    "pixel_size_nm": null,
+    "time_interval_s": null,
+    "notes": ""
+  }
+}

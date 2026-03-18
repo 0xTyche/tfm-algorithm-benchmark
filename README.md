@@ -25,6 +25,7 @@ tfm-algorithm-benchmark/
 │   ├── matlab/
 │   │   ├── u-inferforce/
 │   │   │   ├── README.md
+│   │   │   ├── code/
 │   │   │   ├── paper.md
 │   │   │   ├── language.md
 │   │   │   ├── github.md
@@ -33,6 +34,7 @@ tfm-algorithm-benchmark/
 │   │   ├── Easy-to-use_TFM_package/
 |   |   |   ├── documentation/
     |   |   |   └── User_Manual_Easy-To-Use_TFM_software.pdf
+│   │   │   ├── code/
 │   │   │   ├── paper.md
 │   │   │   ├── language.md
 │   │   │   ├── github.md
@@ -40,6 +42,15 @@ tfm-algorithm-benchmark/
 │   │   │
 │   │   ├── TFMLAB/
 │   │   │   ├── README.md
+│   │   │   ├── code/
+│   │   │   ├── paper.md
+│   │   │   ├── language.md
+│   │   │   ├── github.md
+│   │   │   └── summary.md
+│   │   │
+│   │   ├── TFMLAB/
+│   │   │   ├── README.md
+│   │   │   ├── code/
 │   │   │   ├── paper.md
 │   │   │   ├── language.md
 │   │   │   ├── github.md
@@ -47,6 +58,7 @@ tfm-algorithm-benchmark/
 │   │
 │   ├── python/
 │   │   ├── pyTFM/
+│   │   │   ├── code/
 │   │   │   ├── README.md
 │   │   │   ├── paper.md
 │   │   │   ├── language.md
@@ -55,6 +67,7 @@ tfm-algorithm-benchmark/
 │   │
 │   ├── cpp/
 │   │   ├── cellogram/
+│   │   │   ├── code
 │   │   │   ├── README.md
 │   │   │   ├── paper.md
 │   │   │   ├── language.md
@@ -87,10 +100,14 @@ tfm-algorithm-benchmark/
 │   │
 │   └── benchmarks.md
 │
-├── evaluation/                   # 评测指标与对比流程
-│   ├── metrics.md                # RMSE, force magnitude, direction error 等
-│   ├── protocols.md              # 统一评测流程
-│   └── visualization.md
+├── evaluation/                   # 评测指标、流程与评测脚本（核心）
+│   ├── metrics.md                # 指标定义：RMSE, magnitude, angle, vector error 等
+│   ├── protocols.md              # 统一评测流程与输入输出规范
+│   ├── visualization.md          # 可视化规范（热图、矢量场、误差图）
+│   ├── evaluate_force_magnitude.py   # 评估力的大小（traction magnitude）
+│   ├── evaluate_force_angle.py       # 评估力的方向角度（angle error）
+│   ├── evaluate_runtime.py           # 评估算法运行速度（runtime / throughput）
+│   └── evaluate_vector_field.py      # 评估力矢量（vector field error）
 │
 ├── notes/                        # 个人/实验室经验总结（可选）
 │   ├── lab_usage_notes.md        # “实验室多数同学在用的程序”

@@ -35,3 +35,19 @@ python evaluation/compare_tractions.py ^
   --log-density
 ```
 
+## pyTFM vs u-inferforce（本仓库样例：KO/04）如果你已经有：
+- **u-inferforce**：`uInferforcePackage/forceField/forceField.mat`
+- **pyTFM**：`<frame>tx.npy/<frame>ty.npy` 以及包含 `pixelsize/window_size/overlap` 的 `out.txt`可以用：```bash
+python evaluation/compare_pytfm_uinferforce.py ^
+  --uinferforce-forcefield "datasets/pytfm_sample_data_to_u_inferforce/results/uInferforcePackage/forceField/forceField.mat" ^
+  --pytfm-folder "datasets/example_data_for_pyTFM-master/clickpoints_tutorial/KO_analyzed" ^
+  --pytfm-frame-id 04 ^
+  --pytfm-out-txt "datasets/example_data_for_pyTFM-master/clickpoints_tutorial/KO_analyzed/out.txt" ^
+  --out "evaluation/out/pytfm_vs_uinferforce_KO04.json" ^
+  --plots-dir "evaluation/out/pytfm_vs_uinferforce_KO04_plots" ^
+  --log-density
+```
+
+输出：
+- `*.json`：数值对比（大小 RMSE、方向 cosine/角度误差、以及最优比例因子用于诊断“整体尺度差异”）
+- `*_plots/*.png`：分布对比（模长/方向/角度误差 vs 模长）

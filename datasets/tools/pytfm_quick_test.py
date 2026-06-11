@@ -52,14 +52,10 @@ def main() -> int:
 
     # traction (Pa) – pixelsize2 is the pixel size of the deformation grid
     ps1 = float(p.get("pixelsize", 0.181))
-    ps2 = ps1 * float(np.mean(np.array(beads_after.shape[:2]) / np.array(u.shape))) if False else None  # placeholder
-    # safer: estimate ps2 from u shape only, using bead image dimensions via imread
     try:
         import imageio.v3 as iio
-
         im = iio.imread(beads_after)
-        im_shape = im.shape[:2]
-        ps2 = ps1 * float(np.mean(np.array(im_shape) / np.array(u.shape)))
+        ps2 = ps1 * float(np.mean(np.array(im.shape[:2]) / np.array(u.shape)))
     except Exception:
         ps2 = ps1
 

@@ -101,18 +101,12 @@ function [edges,info_output,valid]=f_meshing_optimization_laplacian(I,info_outpu
     iNrT = length(F); %number of triangles
     iNrV = length(V); %number of vertices
     
-    A = zeros(iNrV,iNrV); %adjacency matrix
-    L = zeros(iNrV,iNrV); %laplacian
-    for i = 1:iNrT
-        A(F(i,:),F(i,:)) = 1;
-    end
-    A = A - eye(size(A));
-    L = L - A;
-    for i = 1:iNrV
-       L(i,i) = sum(A(i,:));
-    end
-
-    L = sparse(L);
+    % Build sparse adjacency matrix and Laplacian without allocating a full dense matrix.
+    % Each triangle contributes 6 directed edges (one per ordered vertex pair).
+    ii = [F(:,1); F(:,1); F(:,2); F(:,2); F(:,3); F(:,3)];
+    jj = [F(:,2); F(:,3); F(:,1); F(:,3); F(:,1); F(:,2)];
+    A = spones(sparse(ii, jj, 1, iNrV, iNrV));
+    L = spdiags(sum(A,2), 0, iNrV, iNrV) - A;
     
     %reduce to inner vertices
 %     L_I = sparse(L(iNrCE+1:end,iNrCE+1:end));

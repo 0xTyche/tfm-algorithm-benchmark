@@ -47,14 +47,6 @@ tfm-algorithm-benchmark/
 │   │   │   ├── language.md
 │   │   │   ├── github.md
 │   │   │   └── summary.md
-│   │   │
-│   │   ├── TFMLAB/
-│   │   │   ├── README.md
-│   │   │   ├── code/
-│   │   │   ├── paper.md
-│   │   │   ├── language.md
-│   │   │   ├── github.md
-│   │   │   └── summary.md
 │   │
 │   ├── python/
 │   │   ├── pyTFM/
@@ -108,6 +100,8 @@ tfm-algorithm-benchmark/
 │   ├── evaluate_force_angle.py       # 评估力的方向角度（angle error）
 │   ├── evaluate_runtime.py           # 评估算法运行速度（runtime / throughput）
 │   └── evaluate_vector_field.py      # 评估力矢量（vector field error）
+│
+├── tfm-ground-truth/             # 合成数据生成平台（BIS 正向模型）：生成 ground truth 牵引/位移/图像对
 │
 ├── notes/                        # 个人/实验室经验总结（可选）
 │   ├── lab_usage_notes.md        # “实验室多数同学在用的程序”

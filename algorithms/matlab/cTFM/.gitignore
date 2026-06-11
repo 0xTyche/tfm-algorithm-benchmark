@@ -1,0 +1,5 @@
+# ABAQUS-bundled scipy/numpy (474 MB, ships with ABAQUS installation)
+AdditionalPythonModules/
+
+# macOS resource fork metadata
+._*

@@ -199,7 +199,7 @@ if isempty(gcp('nocreate'))
     end
 end % we don't need this any more.
 
-if feature('ShowFigureWindows'), parfor_progress(nPoints); end
+if feature('ShowFigureWindows') && exist('parfor_progress','file')==2, parfor_progress(nPoints); end
 % inqryPoint=200;
 % for k = inqryPoint
 parfor k = 1:nPoints

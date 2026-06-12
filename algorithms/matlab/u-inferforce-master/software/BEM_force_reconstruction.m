@@ -609,9 +609,10 @@ alphas=10.^(log10(L)-4.5:1.25/LcurveFactor:log10(L)+2.5);
 rho=zeros(length(alphas),1);
 eta=zeros(length(alphas),1);
 mtik=zeros(size(M,2),length(alphas));
+Mu = M'*u;
 
 for i=1:length(alphas);
-    mtik(:,i)=(MpM+alphas(i)*eyeWeights)\(M'*u);
+    mtik(:,i)=(MpM+alphas(i)*eyeWeights)\Mu;
     rho(i)=norm(M*mtik(:,i)-u);
     eta(i)=norm(mtik(:,i));
 end

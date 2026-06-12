@@ -549,9 +549,14 @@ if strcmpi(p.method,'FastBEM')
                 nRowBlock = ceil(nRows/nLength);
                 nColBlock = ceil(nCols/nLength);
                 forceInFullGrid = zeros(size(grid_mat));
-                subForceInFullGrid = cell(nLength);% zeros(size(grid_mat));
+                subForceInFullGrid = cell(nLength);
                 fullGrid = zeros(size(grid_mat));
-                subFullGrid = cell(nLength); % zeros(size(grid_mat));
+                subFullGrid = cell(nLength);
+                for jj=1:nLength, for kk=1:nLength
+                    subForceInFullGrid{jj,kk} = zeros(size(grid_mat));
+                    subFullGrid{jj,kk} = zeros(size(grid_mat));
+                end, end
+                tmpBuf = zeros(size(grid_mat));
                 % setting up the limits
                 for jj=1:nLength % rows
                     for kk=1:nLength % columns
@@ -604,15 +609,15 @@ if strcmpi(p.method,'FastBEM')
                         curRowRangeComb = nRowFirst:nRowSecond;
                         curColRangeComb =nColFirst:nColSecond;
                         %Insert in the full grid force
-                        tempSubForceInFullGrid = zeros(size(grid_mat));
-                        tempSubForceInFullGrid(curColRange,curRowRange,:) = curForceInGrid;
-                        subForceInFullGrid{jj,kk}=zeros(size(grid_mat));
-                        subForceInFullGrid{jj,kk}(curColRangeComb,curRowRangeComb,:)=tempSubForceInFullGrid(curColRangeComb,curRowRangeComb,:);
-                        tempSubFullGrid = zeros(size(grid_mat));
-                        tempSubFullGrid(curColRange,curRowRange,:) = curGrid;
-                        subFullGrid{jj,kk}=zeros(size(grid_mat));
-                        subFullGrid{jj,kk}(curColRangeComb,curRowRangeComb,:)=tempSubFullGrid(curColRangeComb,curRowRangeComb,:);
-                        
+                        tmpBuf(:) = 0;
+                        tmpBuf(curColRange,curRowRange,:) = curForceInGrid;
+                        subForceInFullGrid{jj,kk}(:) = 0;
+                        subForceInFullGrid{jj,kk}(curColRangeComb,curRowRangeComb,:)=tmpBuf(curColRangeComb,curRowRangeComb,:);
+                        tmpBuf(:) = 0;
+                        tmpBuf(curColRange,curRowRange,:) = curGrid;
+                        subFullGrid{jj,kk}(:) = 0;
+                        subFullGrid{jj,kk}(curColRangeComb,curRowRangeComb,:)=tmpBuf(curColRangeComb,curRowRangeComb,:);
+
                         % Find the overlapping area
                         if ~(pp==1)
                             % find indices of overlapping grid
@@ -700,14 +705,14 @@ if strcmpi(p.method,'FastBEM')
                                 % Define the overlapping area in the clock-wise
                                 % fashion.
                                 %Insert in the full grid force
-                                tempSubForceInFullGrid = zeros(size(grid_mat));
-                                tempSubForceInFullGrid(curColRange,curRowRange,:) = curForceInGrid;
-                                subForceInFullGrid{jj,kk}=zeros(size(grid_mat));
-                                subForceInFullGrid{jj,kk}(curColRangeComb,curRowRangeComb,:)=tempSubForceInFullGrid(curColRangeComb,curRowRangeComb,:);
-                                tempSubFullGrid = zeros(size(grid_mat));
-                                tempSubFullGrid(curColRange,curRowRange,:) = curGrid;
-                                subFullGrid{jj,kk}=zeros(size(grid_mat));
-                                subFullGrid{jj,kk}(curColRangeComb,curRowRangeComb,:)=tempSubFullGrid(curColRangeComb,curRowRangeComb,:);
+                                tmpBuf(:) = 0;
+                                tmpBuf(curColRange,curRowRange,:) = curForceInGrid;
+                                subForceInFullGrid{jj,kk}(:) = 0;
+                                subForceInFullGrid{jj,kk}(curColRangeComb,curRowRangeComb,:)=tmpBuf(curColRangeComb,curRowRangeComb,:);
+                                tmpBuf(:) = 0;
+                                tmpBuf(curColRange,curRowRange,:) = curGrid;
+                                subFullGrid{jj,kk}(:) = 0;
+                                subFullGrid{jj,kk}(curColRangeComb,curRowRangeComb,:)=tmpBuf(curColRangeComb,curRowRangeComb,:);
                                 
                                 forceInCurSub(:,1) = subForceInFullGrid{jj,kk}(idxSelectedX);
                                 forceInCurSub(:,2) = subForceInFullGrid{jj,kk}(idxSelectedY);

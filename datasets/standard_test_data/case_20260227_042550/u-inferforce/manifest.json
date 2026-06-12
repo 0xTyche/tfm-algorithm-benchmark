@@ -1,0 +1,12 @@
+{
+  "dataset": "case_20260227_042550",
+  "level": "B",
+  "notes": "Minimal manifest for u-inferforce-style datasets. Paths are relative to this manifest file.",
+  "frames": [
+    {
+      "frame": 1,
+      "ref_image": "Ref_Image/01.tif",
+      "targ_image": "Targ_Image/01.tif"
+    }
+  ]
+}

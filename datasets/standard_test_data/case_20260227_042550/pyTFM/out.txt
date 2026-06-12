@@ -1,0 +1,5 @@
+pixelsize_um=1.0
+window_size_px=64
+overlap_px=32
+
+This file is intended to help downstream evaluation scripts align grids/units.

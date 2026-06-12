@@ -1,0 +1,15 @@
+{
+  "dataset": "case_20260227_042550",
+  "level": "B",
+  "frames": [
+    {
+      "before": "01before.tif",
+      "after": "01after.tif"
+    }
+  ],
+  "parameters": {
+    "pixelsize_um": 1.0,
+    "window_size_px": 64,
+    "overlap_px": 32
+  }
+}

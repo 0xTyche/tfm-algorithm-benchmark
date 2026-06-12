@@ -1,0 +1,72 @@
+{
+  "case_id": "case_20260227_042550",
+  "has_images": true,
+  "has_displacement": true,
+  "pytfm": {
+    "frame_id": "01",
+    "pixelsize_um": 1.0,
+    "window_size_px": 64,
+    "overlap_px": 32
+  },
+  "tiff_compat_mode": true,
+  "metadata": {
+    "sampling_mode": "Widefield",
+    "fluorophore": "GFP",
+    "excitation_wavelength": 488,
+    "emission_wavelength": 507,
+    "exposure_time": 50.0,
+    "pixel_size": 0.108,
+    "time_interval": 1.0,
+    "numerical_aperture": 1.4,
+    "bit_depth": 16,
+    "bead_count": 500,
+    "psf_sigma": 0.8590833333333333,
+    "bead_intensity": 2000.0,
+    "noise_level": 50.0,
+    "background": 100.0,
+    "max_displacement": 0.5102849890996676,
+    "mean_displacement": 0.08615224286333861,
+    "displacement_scale": 1.0,
+    "random_seed": 42
+  },
+  "forces": [
+    {
+      "magnitude": 1.1519999999999997e-07,
+      "magnitude_uN": 0.11519999999999997,
+      "traction_pa": 18.0,
+      "angle_deg": 135.0,
+      "position": [
+        150.0,
+        190.0
+      ],
+      "square_size": 80.0,
+      "Fx": -8.145870119269024e-08,
+      "Fy": 8.145870119269026e-08
+    },
+    {
+      "magnitude": 1.1519999999999997e-07,
+      "magnitude_uN": 0.11519999999999997,
+      "traction_pa": 18.0,
+      "angle_deg": 45.0,
+      "position": [
+        360.0,
+        220.0
+      ],
+      "square_size": 80.0,
+      "Fx": 8.145870119269026e-08,
+      "Fy": 8.145870119269026e-08
+    },
+    {
+      "magnitude": 1.6291740238538051e-07,
+      "angle_deg": -90.00000000000001,
+      "position": [
+        240.0,
+        340.0
+      ],
+      "square_size": 70.0,
+      "Fx": -1.3234889800848443e-23,
+      "Fy": -1.6291740238538051e-07,
+      "traction_pa": 33.24844946640419
+    }
+  ]
+}

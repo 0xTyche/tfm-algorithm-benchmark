@@ -279,9 +279,9 @@ if p.fillVectors
 
         displField(j).pos=dispMat(:,1:2);
         displField(j).vec=dispMat(:,3:4);
-        if feature('ShowFigureWindows'), parfor_progress; end
+        if feature('ShowFigureWindows') && exist('parfor_progress','file')==2, parfor_progress; end
     end
-    if feature('ShowFigureWindows'), parfor_progress(0); end
+    if feature('ShowFigureWindows') && exist('parfor_progress','file')==2, parfor_progress(0); end
 end
 % Here, if nFrame>1, we do inter- and extrapolation of displacement vectors
 % to prevent sudden, wrong force field change.
